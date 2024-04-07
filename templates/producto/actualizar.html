@@ -1,0 +1,31 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'title' %}Actualizar{% endblock %}
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/producto/form_producto.css' %}">
+{% endblock %}
+{% block 'content' %}
+    <div id="main-container">
+        <h1>Actualizar Producto</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div id="button-container">
+                <input class="btn-submit" id="actualizar-producto" type="submit" value="Guardar">
+            </div>
+        </form>      
+    </div>  
+{% endblock 'content' %}
+
+{% block script %}
+    <script>
+        $('#actualizar-producto').click(function(){
+            Swal.fire({
+                title: 'Produto',
+                text: 'Producto actualizado con exito',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            })
+        })
+    </script>
+{% endblock script %}

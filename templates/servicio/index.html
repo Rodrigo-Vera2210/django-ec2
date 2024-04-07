@@ -1,0 +1,67 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/servicios/servicios.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+    
+    <div id="main-container">
+        <h1>Servicios</h1>
+        <form class="search" action="{% url 'servicios' %}" method="GET">
+            <input class="search-bar" type="text" name="search" placeholder="Buscar servicios...">
+            <input type="submit" value="Buscar" class="btn-submit" >
+        </form>
+        
+        {#{% include 'contact/partials/search.html' %}#}
+        {#{% include 'contact/partials/by_initial.html' %}#}
+        
+        <span class="aux-btns"><a href="{% url 'servicios' %}">Ver todos</a> <a href="{% url 'servicios_create' %}">Añadir</a></span>
+        <div><title></title></div>
+        <table>
+            <tr id="table-title">
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th></th>
+            </tr>
+            {% for servicio in servicios %}
+            <tr class="table-inf">
+                <td class="inf-nombre">{{ servicio.nombre }}</td>
+                <td class="inf-categoria">{{ servicio.categoria }}</td>
+                <td class="botones">
+                    <span>
+                        <a href="{% url 'servicios_update' pk=servicio.pk %}" class="btn btn-edit">Editar</a>
+                        <button class="btn btn-danger" type="button" onclick="abrir_modal_eliminacion('servicios/delete/{{servicio.id}}')">Eliminar</button>
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalCategoria" aria-hidden="true" role="dialog">
+    </div>
+{% endblock 'content' %}
+
+{% block script %}
+    <script>
+        var $ = jQuery.noConflict();
+        function eliminar_servicio(pk){
+            $.ajax({
+                data:{
+                    csrfmiddlewaretoken: $("[name = 'csrfmiddlewaretoken']").val()
+                },
+                url: 'servicios/delete/'+pk,
+                type: 'post',
+            }).done(function(data){
+                cerrar_modal_eliminacion()
+                mensajeSuccess('El servicio ha sido eliminado con exito')
+            }).fail(function(error){
+
+            })
+        }
+    </script>    
+{% endblock script %}
+    

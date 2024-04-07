@@ -1,0 +1,30 @@
+main #main-container {
+  width: 700px;
+}
+main #main-container .search input[type=text] {
+  width: 63%;
+}
+main #main-container #categoria-add, main #main-container #causas-add {
+  width: 90%;
+  border: 1px solid #c9c9d3;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+main #main-container #categoria-add h3, main #main-container #causas-add h3 {
+  padding-bottom: 0;
+}
+main #main-container #categoria-add div, main #main-container #causas-add div {
+  display: flex;
+  align-items: end;
+}
+main #main-container #categoria-add div form, main #main-container #causas-add div form {
+  width: 70%;
+  padding: 10px;
+}
+main #main-container #categoria-add div form input[type=text], main #main-container #causas-add div form input[type=text] {
+  height: 40px;
+  width: 100%;
+}
+main #main-container #categoria-add div input[type=submit], main #main-container #causas-add div input[type=submit] {
+  margin-bottom: 10px;
+}/*# sourceMappingURL=categoria.css.map */

@@ -1,0 +1,27 @@
+main #main-container {
+  width: 600px;
+}
+main #main-container .search input[type=text] {
+  width: 83%;
+}
+main #main-container #categoria-add {
+  width: 90%;
+  border: 1px solid #c9c9d3;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+main #main-container #categoria-add form {
+  width: 100%;
+  padding: 10px;
+}
+main #main-container #categoria-add form input[type=text] {
+  height: 40px;
+  width: 65%;
+  place-content: "Ingresa el nombre";
+}
+main #main-container #categoria-add form input[type=text]:-moz-placeholder-shown {
+  content: "Ingresa el nombre";
+}
+main #main-container #categoria-add form input[type=text]:placeholder-shown {
+  content: "Ingresa el nombre";
+}/*# sourceMappingURL=clientes.css.map */

@@ -1,0 +1,6 @@
+main #main-container {
+  width: 700px;
+}
+main #main-container .search input[type=text] {
+  width: 83%;
+}/*# sourceMappingURL=productos.css.map */

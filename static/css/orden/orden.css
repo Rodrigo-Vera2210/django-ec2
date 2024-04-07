@@ -1,0 +1,130 @@
+#main-container {
+  width: 80vw;
+  background-color: #ebebfb !important;
+}
+#main-container #search-cliente {
+  width: 90%;
+  background-color: white;
+  border-radius: 5px;
+}
+#main-container #search-cliente form {
+  margin-left: 30px;
+}
+#main-container #search-cliente #datos-cliente {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 40px);
+  padding: 20px 30px;
+}
+#main-container #search-cliente #datos-cliente span {
+  padding-right: 10px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 20% 70%;
+}
+#main-container #search-cliente #datos-cliente span select {
+  width: 100% !important;
+}
+#main-container #search-cliente #datos-cliente span span {
+  min-width: 250px !important;
+}
+#main-container #search-cliente #datos-cliente span input {
+  height: 30px;
+}
+#main-container #search-cliente .containerDatosExtras {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+}
+#main-container #detalles {
+  padding: 20px 0;
+  width: 90%;
+  text-align: center;
+}
+#main-container #detalles #valores-detalles {
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+}
+#main-container #detalles #containerExtra {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+#main-container #detalles #containerExtra #comentarios_recomendaciones {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  text-align: start;
+}
+#main-container #detalles #containerExtra #comentarios_recomendaciones textarea {
+  height: 100px;
+}
+#main-container #detalles #containerExtra #orden-valores {
+  border-radius: 10px;
+  padding: 20px;
+  width: 25%;
+  height: 250px;
+}
+#main-container #detalles #containerExtra #orden-valores span {
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
+  align-items: center;
+}
+#main-container #detalles #containerExtra #orden-valores span input[type=number] {
+  width: 50%;
+  height: 30px;
+}
+#main-container #detalles #containerExtra #orden-valores span label {
+  width: 50%;
+}
+#main-container #detalles #responsables {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+#main-container #detalles .dataTables_wrapper {
+  padding: 20px 30px;
+  padding-top: 0;
+}
+#main-container #detalles .dataTables_wrapper table {
+  width: 100%;
+  padding: 10px 0;
+  border-collapse: separate !important;
+}
+#main-container #detalles .dataTables_wrapper table th {
+  background-color: #5db08f;
+}
+#main-container #detalles .dataTables_wrapper table td {
+  background-color: #c9c9d3;
+}
+#main-container #detalles .dataTables_wrapper .dataTables_info, #main-container #detalles .dataTables_wrapper .dataTables_filter {
+  display: none;
+}
+#main-container .buscador {
+  display: flex;
+  width: 90%;
+  height: 40px;
+  justify-content: start;
+  margin: 0 20px;
+}
+#main-container .buscador .buscador_field {
+  width: 90%;
+  padding: 10px;
+  height: 40px;
+}
+
+.input-table {
+  background-color: transparent !important;
+  border: none;
+  width: 50px;
+}/*# sourceMappingURL=orden.css.map */

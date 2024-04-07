@@ -1,0 +1,30 @@
+main #main-container {
+  width: 500px;
+}
+main #main-container form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 100%;
+}
+main #main-container form #button-container {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+main #main-container form p {
+  display: flex;
+  margin: 0;
+  align-items: center;
+  padding: 15px;
+}
+main #main-container form p label {
+  width: 25%;
+  font-weight: 900;
+  margin-right: 10px;
+}
+main #main-container form p input {
+  width: 70%;
+  height: 30px;
+  font-size: 15px;
+}/*# sourceMappingURL=form_producto.css.map */

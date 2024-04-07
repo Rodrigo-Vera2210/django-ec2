@@ -1,0 +1,37 @@
+main #main-container {
+  width: 600px;
+}
+main #main-container form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+main #main-container form #button-container {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+main #main-container form p {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+main #main-container form p label {
+  width: 40%;
+  font-weight: 900;
+}
+main #main-container form p input {
+  width: 60%;
+  margin-left: 10px;
+  height: 30px;
+  font-size: 15px;
+}
+main #main-container form p select {
+  width: 60%;
+  margin-left: 10px;
+  height: 70px;
+  font-size: 15px;
+}
+main #main-container form p #id_categoria {
+  width: 70%;
+}/*# sourceMappingURL=form_empleados.css.map */

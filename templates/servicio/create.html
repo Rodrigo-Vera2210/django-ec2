@@ -1,0 +1,34 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/servicios/form_servicios.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+    <div id="main-container">
+        <h1>Crear Servicio</h1>
+        <form action="{% url 'servicios_create' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div id="button-container">
+                <input class="btn-submit" id="añadir-servicio" type="submit" value="Añadir">
+            </div>
+        </form>      
+    </div>  
+{% endblock 'content' %}
+
+{% block script %}
+    <script>
+        $('#añadir-servicio').click(function(){
+            Swal.fire({
+                title: 'Servicio',
+                text: 'Servicio creado con exito',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            })
+        })
+    </script>
+{% endblock script %}

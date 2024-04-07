@@ -1,0 +1,18 @@
+@import "../variables";
+
+main{
+    #main-container{
+        width: 800px;
+        .search{
+            input[type=text]{
+                width: 83%;
+            }
+            
+        }
+        .informacion{
+            text-align: start;
+            width: 40%;
+        }
+    }
+}
+

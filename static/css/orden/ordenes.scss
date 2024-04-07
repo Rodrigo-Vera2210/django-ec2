@@ -1,0 +1,45 @@
+@import "../variables";
+
+main{
+    #main-container{
+        width: 900px;
+        .search{
+            input[type=text]{
+                width: 83%;
+            }
+            
+        }
+        table{
+            width: 90%;
+            margin: 20px;
+            border-collapse: separate !important;
+            tr{
+                height: 50px;
+                background-color: $color-primary;
+                th{
+                    color: white;
+                    text-align: center;
+                }
+            }
+            .table-inf{
+                text-align: center;
+                background-color: $background-color;
+                .inf-id{
+                    width: 10%;
+                }
+                .inf-categoria{
+                    width: 20%;
+                }
+                .botones{
+                    width: 35%;
+                    text-align: center;
+                }
+            }
+        }
+        .informacion{
+            text-align: start;
+            width: 40%;
+        }
+    }
+}
+

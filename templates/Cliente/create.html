@@ -1,0 +1,31 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/cliente/form_cliente.css' %}">
+{% endblock %}
+
+
+{% block 'content' %}
+    <div id="main-container">
+        <h1>Crear cliente</h1>
+        <form action="{% url 'cliente_create' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div id="button-container">
+                <input class="btn-submit" id="añadir-cliente" type="submit" value="Añadir">
+            </div>
+        </form> 
+    </div>       
+{% endblock 'content' %}
+
+
+{% block script %}
+    <script>
+        $('#añadir-cliente').click(function(){
+            mensajeSuccess('Cliente creado con exito')
+        })
+    </script>
+{% endblock script %}
+    

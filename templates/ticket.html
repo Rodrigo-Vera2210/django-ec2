@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-size: 13px;
+        }
+        #datos-cliente, #containerDatosExtras{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        h1{
+            font-size: 2.5rem;
+        }
+        h1,h2{
+            text-transform: uppercase;
+            color:#18304f;
+        }
+        h2{
+            background-color: yellow;
+            text-align: center;
+            border: 1px solid #4470a8;
+            font-size: 16px;
+            padding: 5px 0;
+        }
+        #datos-cliente span, #containerDatosExtras span{
+            display: flex;
+            width: 45%;
+            padding: 5px;
+        }
+        #datos-cliente span label{
+            margin-right: 10px;
+        }
+        Label{
+            text-decoration: solid;
+            font-weight: 900;
+
+        }
+
+        table{
+            width: 100%;
+        }
+        table thead{
+            text-align: center;
+            background-color: #5db08f;
+        }
+        tr{
+            height: 30px;
+        }
+        table tbody tr{
+            text-align: center;
+            background-color: #c9c9d3;
+        }
+        #piePagina{
+            width: 100%;
+            display: flex;
+        }
+        #recObser{
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+        }
+        #orden-valores{
+            display: flex;
+            flex-direction: column;
+            text-align: end;
+            padding: 20px;
+        }
+        #orden-valores label{
+            margin-right: 25px;
+        }
+        .firma{
+            display: flex;
+            justify-content: space-around;
+        }
+        #firmas{
+            padding-top: 100px;
+        }
+        .cabFir{
+            font-size: 12px;
+        }
+        textarea{
+            width: 625%;
+            font-size: 12px;
+            margin: 10px;
+            padding: 10px;
+            min-height: 100px;
+        }
+        .reOb{
+            padding-top: 50px;
+        }
+        .valores{
+            width: 150px;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            text-align: end;
+        }
+    </style>
+</head>
+<body>
+    <img src="{% static 'img/logo.png' %}" alt="Logo">
+    <div id="main-container">
+        <h1>Orden # {{orden.id}}</h1>
+        <h2>Datos informativos</h2>
+        <div id="datos-cliente">
+            <span>
+                <Label id="l-nombre">Nombres:</Label>
+                {{cliente.nombres}}
+            </span>
+            <span>
+                <Label id="l-fecha">Fecha: </Label>
+                {{orden.fecha_create}}
+            </span>
+            <span>
+                <Label id="l-apellido">Equipo: </Label>
+                {{equipo.nombre}}
+            </span>
+            <span>
+                <Label id="l-direccion">Marca: </Label>
+                {{equipo.marca}}
+            </span>
+            <span>
+                <Label id="l-telefono">Modelo: </Label>
+                {{equipo.modelo}}
+            </span>
+            <span>
+                <Label id="l-telefono">Serie: </Label>
+                {{equipo.serie}}
+            </span>
+            <span>
+                <Label id="l-telefono">Horómetro: </Label>
+                {{orden.horometro}}
+            </span>
+        </div>
+        <h2>Datos extras</h2>
+        <div id="containerDatosExtras">
+            <span>
+                <Label id="l-apellido">Tipo de trabajo: </Label>
+                {{orden.tipo}}
+            </span>
+            <span>
+                <Label id="l-apellido">Lugar de trabajo: </Label>
+                {{orden.lugar}}
+            </span>
+            <span>
+                <Label id="l-apellido">Estado del equipo: </Label>
+                {{orden.estado}}
+            </span>
+        </div>
+        <h2>Causa raíz del efecto</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for causa in causas %}
+                    <tr> 
+                        <td>{{causa.nombre}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Trabajos realizados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>P. Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            {% for servicio in servicios %}
+                <tr>
+                    <td>{{servicio.nombre}}</td>
+                    <td>{{servicio.categoria}}</td>
+                    <td>{{servicio.precio}}</td>
+                    <td>{{servicio.cantidad}}</td>
+                    <td>{{servicio.subtotal}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Materiales y/o respuestos utilizados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>P. Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Unidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            {% for producto in productos %}
+                <tr>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>{{producto.cantidad}}</td>
+                    <td>{{producto.unidad}}</td>
+                    <td>{{producto.subtotal}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <h2>Pie de pagina</h2>
+        <div id="piePagina">
+            <div id="recObser">
+                <label class="reOb">Observaciones:</label>
+                <textarea cols="30" rows="10">{{orden.observacion}}</textarea> 
+                <label class="reOb">Recomendaciones:</label>
+                <textarea cols="30" rows="10">{{orden.recomendacion}}</textarea> 
+                </div>
+            <div id="orden-valores">
+                <span class="valores">
+                    <label > Subtotal </label>
+                    <p>${{orden.subtotal}}</p>
+                </span>
+                <span class="valores">
+                    <label style="padding-right: 40px;">Iva</label>
+                    <p>${{orden.iva}}</p>
+                </span>
+                <span class="valores">
+                    <label style="padding-right: 25px;">Total</label>
+                    <p>${{orden.total}}</p>
+                </span>
+            </div>
+        </div>
+        <div id="firmas">
+            <div class="firma" style="margin-bottom: 0; padding-bottom: 0;">
+                <p class="cabFir">(F) TÉCNICO RESPONSABLE: </p>
+                <p class="cabFir">(F) RECIBE CONFORME: </p>
+            </div>
+            <div class="firma" style="margin-top: 0; padding-top: 0;">
+                <p class="cabFir" style="margin-top: 0; padding-top: 0;">NOMBRE: {{tecnico.nombre}} {{tecnico.apellido}}</p>
+                <p class="cabFir" style="padding-right: 20px; margin-top: 0; padding-top: 0;">NOMBRE: {{orden.recibe}}</p>
+            </div>
+        </div>    
+    </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+@import "../variables";
+
+main{
+    #main-container{
+        width: 700px;
+        .search{
+            input[type=text]{
+                width: 83%;
+            }
+            
+        }
+    }
+}

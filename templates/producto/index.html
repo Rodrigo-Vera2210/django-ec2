@@ -1,0 +1,68 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/producto/productos.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+    <div id="main-container">
+        <h1>Productos</h1>
+        
+        <form class="search" action="{% url 'producto' %}" method="GET">
+            <input class="search-bar" type="text" name="search" placeholder="Buscar contacto...S">
+            <input type="submit" value="Buscar" class="btn-submit" >
+        </form>
+        
+        {#{% include 'contact/partials/search.html' %}#}
+        {#{% include 'contact/partials/by_initial.html' %}#}
+        
+        <span class="aux-btns"><a href="{% url 'producto' %}">Ver todos</a> <a href="{% url 'producto_create' %}">Añadir</a></span>
+        <table>
+            <tr id="table-title">
+                <th>Nombres</th>
+                <th>Cantidad</th>
+                <th>Unidad</th>
+                <th></th>
+            </tr>    
+            {% for producto in productos %}
+            <tr class="table-inf">
+                <td class="inf-marca">{{ producto.nombre }}</td>
+                <td class="inf-marca">{{ producto.cantidad }}</td>
+                <td class="inf-marca">{{ producto.unidad }}</td>
+                <td class="botones">
+                    <span>
+                        <a href="{% url 'producto_update' pk=producto.id %}" class="btn btn-edit">Editar</a>
+                        <button class="btn btn-danger" type="button" onclick="abrir_modal_eliminacion('producto/delete/{{empleado.id}}')">Eliminar</button>
+                    </span>
+                </td>
+            </tr> 
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalCategoria" aria-hidden="true" role="dialog">
+    </div>
+{% endblock 'content' %}
+
+{% block script %}
+    <script>
+        var $ = jQuery.noConflict();
+        function eliminar_producto(pk){
+            $.ajax({
+                data:{
+                    csrfmiddlewaretoken: $("[name = 'csrfmiddlewaretoken']").val()
+                },
+                url: 'producto/delete/'+pk,
+                type: 'post',
+            }).done(function(data){
+                cerrar_modal_eliminacion()
+                mensajeSuccess('El producto ha sido eliminado con exito')
+            }).fail(function(error){
+
+            })
+        }
+    </script>    
+{% endblock script %}
+    

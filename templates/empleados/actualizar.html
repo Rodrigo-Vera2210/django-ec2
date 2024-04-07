@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block 'title' %}Actualizar{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/empleados/form_empleados.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+    <div id="main-container">
+        <h1>Actualizar Cliente</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <p><label>{{form.nombre.label}}</label> {{form.nombre}} </p>
+            <p><label>{{form.apellido.label}}</label> {{form.apellido}} </p>
+            <p><label>{{form.username.label}}</label> {{form.username}} </p>
+            <p><label>{{form.c_id.label}}</label> {{form.c_id}} </p>
+            <p><label>{{form.email.label}}</label> {{form.email}} </p>
+            <p><label>{{form.direccion.label}}</label> {{form.direccion}} </p>
+            <p><label>{{form.telefono.label}}</label> {{form.telefono}} </p>
+            <p><label>{{form.groups.label}}</label> {{form.groups}} </p>
+            <p><label>{{form.cargo.label}}</label> {{form.cargo}} </p>
+            <p><label>{{form.fecha_create.label}}</label> {{form.fecha_create}} </p>
+            <p><label>{{form.password.label}}</label> {{form.password | attr:'type:password'}} </p>
+            <p><label>{{form.password2.label}}</label> {{form.password2}} </p>
+            <p>{{form.errors}}</p>
+            <div id="button-container">
+                <input class="btn-submit" id="actualizar-cliente" type="submit" value="Añadir">
+            </div>
+        </form> 
+    </div>     
+{% endblock 'content' %}
+
+{% block script %}
+    <script>
+        $('#actualizar-cliente').click(function(){
+            Swal.fire({
+                title: 'Cliente',
+                text: 'Cliente actualizado con exito',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            })
+        })
+    </script>
+{% endblock script %}

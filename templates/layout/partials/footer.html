@@ -1,0 +1,16 @@
+{% load static %}
+<footer>
+    <section>
+        <img src="{% static 'img/logo.png' %}" alt="Logo">
+        <nav>
+            <ul>
+                <li><a href="{% url 'ordenes' %}">Ordenes</a></li>
+                <li><a href="{% url 'servicios' %}">Servicios</a></li>
+                <li><a href="{% url 'producto' %}">Inventario</a></li>
+                <li><a href="{% url 'cliente' %}">Clientes</a></li>
+                <li><a href="{% url 'categorias' %}">Categorías</a></li>
+            </ul>
+        </nav>
+    </section>
+    <p>Todos los derechos reservados LISROD CIA</p>
+</footer>

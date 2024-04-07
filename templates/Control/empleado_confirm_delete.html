@@ -1,0 +1,19 @@
+<div class="modal-dialog modals-default">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>ELIMINAR</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
+        </div>
+        <div class="modal-body text-center">
+            <p>¿Desea eliminar el empleado {{ object.nombre }} {{ object.apellido}} ?</p>
+            
+        </div>
+        <div class="modal-footer">
+            {% csrf_token %}
+            <button type="submit" id="eliminar-btn" class="btn btn-danger" data-bs-dismiss="modal" data-from="bottom" onclick="eliminar_empleado('{{ object.pk }}')"> Confirmar </button>
+            <button type="button" class="btn btn-default btn-secondary" data-bs-dismiss="modal" >Cancelar</button>
+        </div>
+    </div>    
+</div>
+

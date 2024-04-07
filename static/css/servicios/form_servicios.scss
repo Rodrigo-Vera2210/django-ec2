@@ -1,0 +1,40 @@
+@import "../variables";
+
+main{
+    #main-container{
+        width: 500px;
+        form{
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            width: 90%;
+            #button-container{
+                display: flex;
+                justify-content: center;
+                padding: 15px;
+            }
+            p{
+                display: flex;
+                align-items: center;
+                margin: 0;
+                padding: 15px;
+                label{
+                    width: 25%;
+                    margin-right: 25px;
+                    font-weight: 900;
+                }
+                input{
+                    width: 70%;
+                    height: 30px;
+                    font-size: 15px;
+                }
+                select{
+                    width: 70%;
+                    height: 30px;
+                    font-size: 15px;
+                }
+                
+            }
+        }
+    }
+}

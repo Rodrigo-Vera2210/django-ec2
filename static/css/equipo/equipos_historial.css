@@ -1,0 +1,72 @@
+main #main-container {
+  width: 95%;
+}
+main #main-container .search input[type=text] {
+  width: 83%;
+}
+main #main-container .informacion {
+  text-align: start;
+  width: 40%;
+}
+main #main-container .botones {
+  width: 5%;
+}
+main #main-container #container {
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+  align-items: center;
+  height: 35vh;
+  width: 100%;
+  padding: 0 5%;
+}
+main #main-container #container #datosEquipo {
+  width: 70%;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(3, 50px);
+}
+main #main-container #container #datosEquipo h2 {
+  grid-column: 1/3;
+  margin: 0;
+  padding: 0 15px;
+  grid-row: 1;
+  align-items: start !important;
+  align-self: start;
+  justify-self: start;
+  justify-content: start;
+}
+main #main-container #container #datosEquipo span {
+  display: flex;
+  align-items: end;
+}
+main #main-container #container #datosEquipo span label {
+  margin-right: 10px;
+  font-weight: 900;
+  color: #4470a8;
+}
+main #main-container #container #datosEquipo span p {
+  margin: 0;
+  align-items: end;
+}
+main #main-container #QR {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  height: 35vh;
+}
+main #main-container #QR img {
+  width: 50%;
+}
+main #main-container #historial {
+  width: 95%;
+  border: 1px solid gray;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+main #main-container #historial table {
+  width: 97%;
+}/*# sourceMappingURL=equipos_historial.css.map */

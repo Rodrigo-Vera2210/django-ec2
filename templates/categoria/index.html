@@ -1,0 +1,123 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/categoria/categoria.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+    <div id="main-container">
+        <h1>Categorías</h1>
+        
+        <input class="search" action="{% url 'categorias' %}" method="GET">
+            <input class="search-bar" type="text" name="search" placeholder="Buscar categoría...S">
+            <input class="btn-submit" type="submit"><i class="bi bi-search"></i> </input>
+            <span class="aux-btns"><a href="{% url 'categorias' %}">Ver todos</a></span>
+        </form>
+        
+        <table>
+            <tr id="table-title">
+                <th>Nombres</th>
+                <th></th>
+            </tr>    
+            {% for categoria in categorias %}
+            <tr class="table-inf">
+                <td class="inf-marca">{{ categoria.nombre }}</td>
+                <td class="botones">
+                    <span>
+                        <button class="btn btn-danger" type="button" onclick="abrir_modal_eliminacion('categoria/delete/{{empleado.id}}')">Eliminar</button>
+                    </span>
+                </td>
+            </tr> 
+            {% endfor %}
+        </table>
+        <div id="categoria-add">
+            <h3>Añadir categoria</h3>
+            <div>
+                <form id="form-add" method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                </form>
+                <input id="btn-añadir" class="btn-submit"  type="submit" value="Añadir">
+            </div>
+        </div>
+        
+        
+        
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalCategoria" aria-hidden="true" role="dialog">
+    </div>
+
+{% endblock 'content' %}
+
+{% block script %}
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        $(document).ready(function (){
+            $('#btn-añadir').on('click', function(){
+                $.ajax({
+                    url: "{% url 'categorias' %}",
+                    type: 'POST',
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: {nombre: $('#id_nombre').val()},
+                    dataType: 'json',
+                }).done(function(data){
+                    mensajeSuccess('Categoría creada con exito')
+                }).fail(function(data){
+                    alert("error");
+                }).always(function(data){
+                    // alert("complete");
+                });
+            });
+            listadoCategoria();
+        }); 
+
+        function listadoCategoria(){
+            $.ajax({
+                url: "{% url 'categorias' %}",
+                type: 'get',
+                dataType: 'json',
+            }).done(function(data){
+                var data2 = JSON.parse(data); 
+            })
+        }
+    </script>
+
+    <script>
+        var $ = jQuery.noConflict();
+        function eliminar_categoria(pk){
+            $.ajax({
+                data:{
+                    csrfmiddlewaretoken: $("[name = 'csrfmiddlewaretoken']").val()
+                },
+                url: 'categorias/delete/'+pk,
+                type: 'post',
+            }).done(function(data){
+                cerrar_modal_eliminacion()
+                mensajeSuccess('La categoria ha sido eliminada con exito')
+            }).fail(function(error){
+
+            })
+        }
+    </script> 
+{% endblock script %}
+    

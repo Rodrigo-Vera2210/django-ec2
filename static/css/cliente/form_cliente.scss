@@ -1,0 +1,44 @@
+@import "../variables";
+
+main{
+    #main-container{
+        width: 500px;
+        form{
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            width: 100%;
+            #button-container{
+                display: flex;
+                justify-content: center;
+                padding: 15px;
+            }
+            p{
+                display: flex;
+                align-items: center;
+                padding: 15px;
+                width: 100%;
+                label{
+                    width: 45%;
+                    font-weight: 900;
+                }
+                input[type=text], input[type=email]{
+                    width: 70%;
+                }
+                select{
+                    width: 27%;
+                    height: 30px;
+                    font-size: 15px;
+                }
+                input{
+                    height: 30px;
+                    font-size: 15px;
+                }
+                #id_categoria{
+                    width: 70%;
+                }
+                
+            }
+        }
+    }
+}

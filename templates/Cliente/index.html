@@ -1,0 +1,70 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/cliente/clientes.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+
+    <div id="main-container">
+        <h1>Clientes</h1>
+        <form class="search" action="{% url 'cliente' %}" method="GET">
+            <input class="search-bar" type="text" name="search" placeholder="Buscar cliente">
+            <input type="submit" value="Buscar" class="btn-submit" >
+        </form>
+        
+        
+        <span class="aux-btns"><a href="{% url 'cliente' %}">Ver todos</a> <a href="{% url 'cliente_create' %}">Añadir</a></span>
+        <table>
+            <tr id="table-title">
+                <th>Nombres</th>
+                {% for g in user.groups.all %}
+                    {% if g.name == 'administrador' %}
+                        <th></th>
+                    {% endif %}
+                {% endfor %}
+            </tr>    
+            {% for cliente in clientes %}
+            <tr class="table-inf">
+                <td class="inf-marca">{{ cliente.nombres }}</td>
+                
+                {% for g in user.groups.all %}
+                    {% if g.name == 'administrador' %}
+                        <td class="botones">
+                            <span>
+                                <a href="{% url 'cliente_update' pk=cliente.id %}" class="btn btn-edit">Editar</a>
+                                <button class="btn btn-danger" type="button" onclick="abrir_modal_eliminacion('cliente/delete/{{empleado.id}}')">Eliminar</button>
+                            </span>
+                        </td>
+                    {% endif %}
+                {% endfor %}
+            </tr> 
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalCategoria" aria-hidden="true" role="dialog">
+    </div>
+{% endblock 'content' %}
+
+{% block script %}
+    <script>
+        var $ = jQuery.noConflict();
+        function eliminar_cliente(pk){
+            $.ajax({
+                data:{
+                    csrfmiddlewaretoken: $("[name = 'csrfmiddlewaretoken']").val()
+                },
+                url: 'cliente/delete/'+pk,
+                type: 'post',
+            }).done(function(data){
+                cerrar_modal_eliminacion()
+                mensajeSuccess('El cliente ha sido eliminado con exito')
+            }).fail(function(error){
+
+            })
+        }
+    </script>    
+{% endblock script %}

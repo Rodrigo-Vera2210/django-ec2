@@ -1,0 +1,138 @@
+@import "../variables";
+
+
+#main-container{
+    width: 80vw;
+    background-color: #ebebfb !important;
+    #search-cliente{
+        width: 90%;
+        background-color: white;
+        border-radius: 5px;
+        form{
+            margin-left: 30px;
+        }
+        #datos-cliente{
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 40px);
+            padding: 20px 30px;
+            span{
+                padding-right: 10px;
+                display: grid;
+                align-items: center;
+                grid-template-columns: 20% 70%;
+                select{
+                    width: 100% !important;
+                }
+                span{
+                    min-width: 250px !important;
+                    
+                }
+                input{
+                    height: 30px;
+                }
+            }
+        }
+        .containerDatosExtras{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+    }
+    
+
+    
+    #detalles{
+        padding: 20px 0;
+        width: 90%;
+        text-align: center;
+        #valores-detalles{
+            background-color: white;
+            border-radius: 10px;
+            width: 100%;
+        }
+        #containerExtra{
+            display: flex;
+            width: 100%;
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            #comentarios_recomendaciones{
+                display: flex;
+                width: 70%;
+                flex-direction: column;
+                text-align: start;
+                textarea{
+                    height: 100px;
+                }
+            }
+            #orden-valores{
+                border-radius: 10px;
+                padding: 20px;
+                width: 25%;
+                height: 250px;
+                span{
+                    display: flex;
+                    width: 100%;
+                    padding: 10px 0;
+                    align-items: center;
+                    input[type=number]{
+                        width: 50%;
+                        height: 30px;
+                    }
+                    label{
+                        width: 50%;
+                    }
+                }
+            }
+        }
+        #responsables{
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        .dataTables_wrapper{
+            padding: 20px 30px;
+            padding-top: 0;
+            table{
+                width: 100%;
+                padding: 10px 0;
+                border-collapse: separate !important;
+                th{
+                    background-color: $color-primary;
+                }
+                td{
+                    background-color: $background-color;
+                }
+            }
+            .dataTables_info, .dataTables_filter{
+                display: none;
+            }
+        }
+    }
+    
+    .buscador{
+        display: flex;
+        width: 90%;
+        height: 40px;
+        justify-content: start;
+        margin: 0 20px;
+        .buscador_field{
+            width: 90%;
+            padding: 10px;
+            height: 40px;
+        }
+    }
+}
+
+.input-table{
+    background-color: transparent !important;
+    border: none;
+    width: 50px;
+}

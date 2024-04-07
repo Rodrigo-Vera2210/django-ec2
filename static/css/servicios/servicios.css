@@ -1,0 +1,10 @@
+main #main-container {
+  width: 800px;
+}
+main #main-container .search input[type=text] {
+  width: 83%;
+}
+main #main-container .informacion {
+  text-align: start;
+  width: 40%;
+}/*# sourceMappingURL=servicios.css.map */

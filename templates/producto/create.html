@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/producto/form_producto.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+    <div id="main-container">
+        <h1>Crear Producto</h1>
+        <form action="{% url 'producto_create' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div id="button-container">
+                <input class="btn-submit" id="crear-producto" type="submit" value="Añadir">
+            </div>
+        </form>   
+    </div>     
+{% endblock 'content' %}
+
+{% block script %}
+    <script>
+        $('#crear-producto').click(function(){
+            mensajeSuccess('Producto creado con exito')
+        })
+    </script>
+{% endblock script %}

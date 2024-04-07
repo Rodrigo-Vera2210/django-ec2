@@ -1,0 +1,452 @@
+{% extends 'layout/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/orden/orden.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+
+    <div id="main-container">
+        <h1>Crear Orden</h1>
+        <div id="search-cliente">
+            <h3>Buscar Cliente</h3>
+            <div class="buscador">
+                <select name="cliente" id="bus_cliente" class="buscador_field">
+                    <option value="0">Seleccione Cliente</option>
+                    
+                    {% for cli in cliente2 %}
+                        <option value="{{cli.id}}">{{cli.nombres}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="errores-cliente" class="error"></div>
+            <hr>
+            <div id="datos-cliente">
+                <span>
+                    <Label id="l-nombre">Nombres: </Label>
+                    <input id="cli-nombre" type="text" disabled>
+                </span>
+                <span>
+                    <Label id="l-fecha">Fecha: </Label>
+                    {{form.fecha_create|attr:"disabled"}}
+                </span>
+                <span>
+                    <Label id="l-apellido">Equipo: </Label>
+                    <select name="equipo" id="bus_equipo" class="buscador_field">
+                        <option value="0">Seleccione un equipo</option>
+                    </select>
+                </span>
+                <span>
+                    <Label id="l-direccion">Marca: </Label>
+                    <input id="marca" type="text" disabled>
+                </span>
+                <span>
+                    <Label id="l-telefono">Modelo: </Label>
+                    <input id="modelo" type="text" disabled>
+                </span>
+                <span>
+                    <Label id="l-telefono">Serie: </Label>
+                    <input id="serie" type="text" disabled>
+                </span>
+                <span>
+                    <Label id="l-telefono">Horómetro: </Label>
+                    {{form.horometro}}
+                </span>
+            </div>
+            <hr>
+            <div class="containerDatosExtras">
+                <span>
+                    <Label id="l-apellido">Tipo de trabajo: </Label>
+                    <select name="tipo" id="selTipo">
+                        <option value="Preventivo">Preventivo</option>
+                        <option value="Correctivo">Correctivo</option>
+                        <option value="Levantamiento tecnico">Levantamiento técnico</option>
+                    </select>
+                </span>
+                <span>
+                    <Label id="l-apellido">Lugar de trabajo: </Label>
+                    <select name="lugar" id="selLugar">
+                        <option value="En el punto">En el punto</option>
+                        <option value="Taller matriz">Taller matriz</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </span>
+                <span>
+                    <Label id="l-apellido">Estado del equipo: </Label>
+                    <select name="estado" id="selEstado">
+                        <option value="Operativo">Operativo</option>
+                        <option value="No operativo">No operativo</option>
+                    </select>
+                </span>
+
+            </div>
+        </div>
+        
+        <div id="detalles">
+            <div id="valores-detalles">
+                <div class="causas-container">
+                    <h3>Añadir causas</h3>
+                    <div class="buscador">
+                        <select name="causa" id="bus_causas" class="buscador_field">
+                            <option value="0">Seleccione una causa</option>
+                            {% for causa in causas2 %}
+                                <option value="{{causa.id}}">
+                                    {{causa.nombre}}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        
+                    </div>
+                    <div id="errores-causas" class="error"></div>
+                    <table id="detalle-causas">
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="servicio-container">
+                    <h3>Añadir servicio</h3>
+                    <div class="buscador">
+                        <select name="servicio" id="bus_servicios" class="buscador_field">
+                            <option value="0">Seleccione un servicio</option>
+                            {% for serv in servicios2 %}
+                                <option value="{{serv.id}}">
+                                    {{serv.nombre}} ({{serv.categoria}} )
+                                </option>
+                            {% endfor %}
+                        </select>
+                        
+                    </div>
+                    <div id="errores-servicio" class="error"></div>
+                    <table id="detalle-servicio">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>P. Unitario</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="producto-container">
+                    <div></div>
+                    <h3>Añadir producto</h3>
+                    <div class="buscador">
+                        
+                        <select name="producto" id="bus_productos" class="buscador_field">
+                            <option value="0">Seleccione un producto</option>
+                            {% for producto in productos2 %}
+                                <option value="{{producto.id}}">{{producto.nombre}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="errores-producto" class="error"></div>
+                    <table id="detalle-producto">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>P. Unitario</th>
+                                <th>Cantidad</th>
+                                <th>Unidad</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                
+            </div>
+            <section id="containerExtra">
+                <div id="comentarios_recomendaciones">
+                    <label for="observacion">Observaciones</label>
+                    {{form.observacion}}
+                    <label for="recomendacion">Recomendaciones</label>
+                    {{form.recomendacion}}
+                </div>
+                <div id="orden-valores">
+                    <form method="POST">
+                        <span>
+                            <label > Subtotal </label>
+                            {{form.subtotal|attr:"disabled"}}
+                        </span>
+                        <span>
+                            <label>Iva</label>
+                            {{form.iva|attr:"disabled"}}
+                        </span>
+                        <span>
+                            <label>Total</label>
+                            {{form.total|attr:"disabled"}}
+                        </span>
+                    </form>
+                    <input id="guardar" type="submit" value="Guardar" class="btn-submit" >
+                </div>
+            </section>
+            <section id="responsables">
+                <span>
+                    <label for="tecnico">Tecnico responsable</label>
+                    <select name="tecnico" id="busTecnico">
+                        <option value="0">Seleccione un tecnico</option>
+                        {% for empleado in empleados %}
+                            {% for g in empleado.groups.all %}
+                                {% if g.name == "tecnico"  %}
+                                <option value="{{empleado.id}}">{{empleado.nombre}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </select>
+                </span>
+                <span>
+                    <label for="">Recibe</label>
+                    <input id="responsable" type="text">
+                </span>
+                {{form.erros}}
+            </section>
+        </div>
+    </div>
+{% endblock 'content' %}
+
+{% block script %}
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
+    <script src="{% static 'js/orden.js' %}"></script>
+    <script>
+        var servicios = {}
+        var causas = {}
+        var productos = {}
+        var cliente = {
+            'id': '',
+            'nombres': ''
+        }
+        var equipo = {
+            'id': '',
+            'nombres': ''
+        }
+        var cant_servicio = 0
+        var cant_causas = 0
+        var cant_productos = 0
+        const detalles_factura = {
+            'total_productos' : 0.0,
+            'total_servicios' : 0.0,
+            'subtotal' : 0.0,
+            'iva' : 0.0,
+            'total' : 0.0,
+        }
+        $('#bus_cliente').select2()
+        $('#bus_productos').select2()
+        $('#bus_servicios').select2()
+        $('#bus_causas').select2()
+        $('#bus_equipo').select2()
+        const csrftoken = getCookie('csrftoken');
+        $(document).ready(function (){
+            $('#detalle-producto').DataTable();
+            $('#detalle-servicio').DataTable();
+            $('#detalle-causas').DataTable();
+            $('#bus_cliente').on('change', function(){
+                $.ajax({
+                    url: "{% url 'orden_create' %}",
+                    type: 'post',
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: {
+                        action: 'search-cliente',
+                        nombre: $('#bus_cliente').val()
+                    },
+                    dataType: 'json',
+                }).done(function(data){
+                    if(data['error'] != ''){
+                        mostrarErrores(data['error'], 'cliente');
+                    }
+                    else{
+                        $('#cli-nombre').val(data['nombres'])
+                        $('#bus_cliente').val('')
+                        $('#bus_equipo').select2({
+                            data: data['equiposN']
+                        })
+                        cliente = {
+                            'id': data['id'],
+                            'nombre': data['nombre']
+                        }
+                    }
+                    
+                }).fail(function(data){
+                }).always(function(data){
+                    // alert("complete");
+                });
+            });
+    
+            $('#bus_equipo').on('change', function(){
+                $.ajax({
+                    url: "{% url 'orden_create' %}",
+                    type: 'post',
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: {
+                        action: 'search-equipo',
+                        nombre: $('#bus_equipo').val()
+                    },
+                    dataType: 'json',
+                }).done(function(data){
+                    if(data['error'] != ''){
+                        mostrarErrores(data['error'], 'cliente');
+                    }
+                    else{
+                        equipo={
+                            'id': data['id'],
+                            'nombre': data['nombre']
+                        }
+                        $('#marca').val(data['marca'])
+                        $('#modelo').val(data['modelo'])
+                        $('#serie').val(data['serie'])
+                    }
+                    
+                }).fail(function(data){
+                }).always(function(data){
+                    // alert("complete");
+                });
+            });
+            
+            $('#bus_causas').on('change', function(){
+                $.ajax({
+                    url: "{% url 'orden_create' %}",
+                    type: 'post',
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: {
+                        action: 'search-causa',
+                        nombre: $('#bus_causas').val()
+                    },
+                    dataType: 'json',
+                }).done(function(data){
+                    if(data['error'] != ''){
+                        mostrarErrores(data['error'], 'causa');
+                    }
+                    else{
+                        causas[cant_causas] = data;
+                        listarCausas()
+                        $('#bus_causas').val('0')
+                    }
+                }).fail(function(data){
+                }).always(function(data){
+                    // alert("complete");
+                });
+            });
+            
+            $('#bus_servicios').on('change', function(){
+                $.ajax({
+                    url: "{% url 'orden_create' %}",
+                    type: 'post',
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: {
+                        action: 'search-servicio',
+                        nombre: $('#bus_servicios').val()
+                    },
+                    dataType: 'json',
+                }).done(function(data){
+                    if(data['error'] != ''){
+                        mostrarErrores(data['error'], 'servicio');
+                    }
+                    else{
+                        servicios[cant_servicio] = data;
+                        listarServicios()
+                        Sumatoria()
+                        $('#bus_servicios').val('0')
+                    }
+                }).fail(function(data){
+                }).always(function(data){
+                    // alert("complete");
+                });
+            });
+            
+            $('#bus_productos').on('change', function(){
+                $.ajax({
+                    url: "{% url 'orden_create' %}",
+                    type: 'post',
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: {
+                        action: 'search-producto',
+                        nombre: $('#bus_productos').val()
+                    },
+                    dataType: 'json',
+                }).done(function(data){
+                    if(data['error'] != ''){
+                        mostrarErrores(data['error'], 'producto');
+                    }
+                    else{
+                        productos[cant_productos] = data;
+                        listarProductos()
+                        Sumatoria()
+                        $('#bus_productos').val('')
+                    }
+                }).fail(function(data){
+                    mostrarErrores(data, 'producto');
+                }).always(function(data){
+                    // alert("complete");
+                });
+            });
+            
+            $('#guardar').on('click', function(){
+                $.ajax({
+                    url: "{% url 'orden_create' %}",
+                    type: 'post',
+                    headers: {'X-CSRFToken': csrftoken},
+                    data: {
+                        action: 'guardar',
+                        detalles: detalles_factura,
+                        productos: JSON.stringify(productos),
+                        servicios: JSON.stringify(servicios),
+                        causas: JSON.stringify(causas),
+                        tipo: $('#selTipo').val(),
+                        lugar: $('#selLugar').val(),
+                        estado: $('#selEstado').val(),
+                        horometro: $('#id_horometro').val(),
+                        observaciones: $('#id_observacion').val(),
+                        recomendaciones: $('#id_recomendacion').val(),
+                        tecnico: $('#busTecnico').val(),
+                        recibe: $('#responsable').val(),
+                        equipo: equipo,
+                        cliente: cliente,
+                        fecha: $('#id_fecha_create').val()
+                    },
+                    dataType: 'json',
+                }).done(function(data){
+                    mensajeSuccess('Orden creada con exito')
+                }).fail(function(data){
+                    mostrarErrores(data, 'producto');
+                }).always(function(data){
+                    // alert("complete");
+                });
+            });
+            
+            function mostrarErrores(errores, tipo){
+                if(tipo == 'cliente'){
+                    $('#errores-cliente').html("")
+                    let error = "";
+                    error += '<div><strong>' + errores + '</strong></div>'
+                    $('#errores-cliente').append(error)}
+                else if(tipo == 'producto'){
+                    $('#errores-producto').html("")
+                    let error = "";
+                    error += '<div><strong>' + errores + '</strong></div>'
+                    $('#errores-producto').append(error)}
+                else if(tipo == 'servicio'){
+                    $('#errores-servicio').html("")
+                    let error = "";
+                    error += '<div><strong>' + errores + '</strong></div>'
+                    $('#errores-servicio').append(error)}
+                
+                
+            }
+        }); 
+
+    </script>
+{% endblock %}

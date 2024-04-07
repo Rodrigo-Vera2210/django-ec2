@@ -1,0 +1,105 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/categoria/categoria.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+    
+    <div id="main-container">
+        <h1>Causas raíz del defecto</h1>
+        <form class="search" action="{% url 'causas' %}" method="GET">
+            <input class="search-bar" type="text" name="search" placeholder="Buscar causas...">
+            <input type="submit" value="Buscar" class="btn-submit" >
+            <span class="aux-btns"><a href="{% url 'causas' %}">Ver todos</a></span>
+        </form>
+        
+        <div><title></title></div>
+        <table>
+            <tr id="table-title">
+                <th>Nombre</th>
+                <th></th>
+            </tr>
+            {% for causa in causas %}
+            <tr class="table-inf">
+                <td class="inf-nombre">{{ causa.nombre }}</td>
+                <td class="botones">
+                    <span>
+                        <button class="btn btn-danger" type="button" onclick="abrir_modal_eliminacion('delete/{{causa.id}}')">Eliminar</button>
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+
+        <div id="causas-add">
+            <h3>Añadir Causa</h3>
+            <div>
+                <form id="form-add" method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                </form>
+                <input id="btn-añadir" class="btn-submit"  type="submit" value="Añadir">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalCategoria" aria-hidden="true" role="dialog">
+    </div>
+{% endblock 'content' %}
+
+{% block script %}
+    <script>
+        var $ = jQuery.noConflict();
+        function eliminar_causa(pk){
+            $.ajax({
+                data:{
+                    csrfmiddlewaretoken: $("[name = 'csrfmiddlewaretoken']").val()
+                },
+                url: '../causas/delete/'+pk,
+                type: 'post',
+            }).done(function(data){
+                cerrar_modal_eliminacion()
+                mensajeSuccess('La causa ha sido eliminado con exito')
+            }).fail(function(error){
+
+            })
+        }
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        $('#btn-añadir').on('click', function(){
+            $.ajax({
+                url: "{% url 'causas' %}",
+                type: 'POST',
+                headers: {'X-CSRFToken': csrftoken},
+                data: {nombre: $('#id_nombre').val()},
+                dataType: 'json',
+            }).done(function(data){
+                mensajeSuccess('Causa creada con exito')
+                $('#id_nombre').val("")
+            }).fail(function(data){
+                alert("error");
+            }).always(function(data){
+                // alert("complete");
+            });
+        });
+    </script>    
+{% endblock script %}
+    

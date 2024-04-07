@@ -1,0 +1,37 @@
+main #main-container {
+  width: 900px;
+}
+main #main-container .search input[type=text] {
+  width: 83%;
+}
+main #main-container table {
+  width: 90%;
+  margin: 20px;
+  border-collapse: separate !important;
+}
+main #main-container table tr {
+  height: 50px;
+  background-color: #5db08f;
+}
+main #main-container table tr th {
+  color: white;
+  text-align: center;
+}
+main #main-container table .table-inf {
+  text-align: center;
+  background-color: #c9c9d3;
+}
+main #main-container table .table-inf .inf-id {
+  width: 10%;
+}
+main #main-container table .table-inf .inf-categoria {
+  width: 20%;
+}
+main #main-container table .table-inf .botones {
+  width: 35%;
+  text-align: center;
+}
+main #main-container .informacion {
+  text-align: start;
+  width: 40%;
+}/*# sourceMappingURL=ordenes.css.map */

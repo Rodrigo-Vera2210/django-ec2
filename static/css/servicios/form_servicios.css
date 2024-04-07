@@ -1,0 +1,35 @@
+main #main-container {
+  width: 500px;
+}
+main #main-container form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  width: 90%;
+}
+main #main-container form #button-container {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+main #main-container form p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 15px;
+}
+main #main-container form p label {
+  width: 25%;
+  margin-right: 25px;
+  font-weight: 900;
+}
+main #main-container form p input {
+  width: 70%;
+  height: 30px;
+  font-size: 15px;
+}
+main #main-container form p select {
+  width: 70%;
+  height: 30px;
+  font-size: 15px;
+}/*# sourceMappingURL=form_servicios.css.map */

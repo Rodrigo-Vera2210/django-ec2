@@ -1,0 +1,80 @@
+@import "../variables";
+
+main{
+    #main-container{
+        width: 95%;
+        .search{
+            input[type=text]{
+                width: 83%;
+            }
+            
+        }
+        .informacion{
+            text-align: start;
+            width: 40%;
+        }
+        .botones{
+            width: 5%;
+        }
+        #container{
+            display: flex;
+            justify-content: space-around;
+            align-self: center;
+            align-items: center;
+            height: 35vh;
+            width: 100%;
+            padding: 0 5% ;
+            #datosEquipo{
+                width: 70%;
+                justify-self: center;
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                grid-template-rows: repeat(3,50px);
+                h2{
+                    grid-column: 1/3;
+                    margin: 0;
+                    padding: 0 15px;
+                    grid-row: 1;
+                    align-items: start !important;
+                    align-self: start;
+                    justify-self: start;
+                    justify-content: start;
+                }
+                span{
+                    display: flex;
+                    align-items: end;
+                    label{
+                        margin-right: 10px;
+                        font-weight: 900;
+                        color: #4470a8;
+                    }
+                    p{
+                        margin: 0;
+                        align-items: end;
+                    }
+                }
+            }
+        }
+        #QR{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+            height: 35vh;
+            img{
+                width: 50%;
+            }
+        }
+        #historial{
+            width: 95%;
+            border: 1px solid gray;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            table{
+                width: 97%;
+            }
+        }
+    }
+}
+

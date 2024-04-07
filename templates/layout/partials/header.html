@@ -1,0 +1,56 @@
+{% load static %}
+<header>
+    <div id="header-sup">
+        <img src="{% static 'img/logo.png' %}" alt="Logo">
+    </div>
+    <nav class="navbar2">
+        <div class="dropdown2">
+            <button class="dropbtn">Ordenes
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+            <a href="{% url 'orden_create' %}">Crear</a>
+            <a href="{% url 'ordenes' %}">Lista</a>
+            </div>
+        </div>
+        
+        {% for g in user.groups.all %}
+            {% if g.name == 'administrador' %}
+                <div class="dropdown2">
+                    <button class="dropbtn">Servicios
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                    <a href="{% url 'servicios' %} ">Lista</a>
+                    <a href="{% url 'categorias' %} ">Categorías</a>
+                    </div>
+                </div>
+                <div class="dropdown2">
+                    <button class="dropbtn"><a href="{% url 'producto' %} ">Inventario</a> 
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                </div>
+                <div class="dropdown2">
+                    <button class="dropbtn"> 
+                        <i class="fa fa-caret-down"></i><a href="{% url 'causas' %} ">Causas</a>
+                    </button>
+                </div>
+                <div class="dropdown2">
+                    <button class="dropbtn"> 
+                        <i class="fa fa-caret-down"></i><a href="{% url 'empleado' %} ">Empleados</a>
+                    </button>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div class="dropdown2">
+            <button class="dropbtn">Clientes
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="{% url 'cliente' %} ">Lista</a>
+            <a href="{% url 'equipo' %} ">Equipos</a>
+            </div>
+        </div>
+    </nav>
+    <a href="{% url 'logout' %}">Logout</a>
+</header>

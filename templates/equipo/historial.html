@@ -1,0 +1,121 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'title' %}Crear{% endblock %}
+
+{% block 'styles' %}
+    <link rel="stylesheet" href="{% static 'css/equipo/equipos_historial.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+    <div id="main-container">
+        <input class="id_equipo" id="id_equipo" style="display: none;" type="number" value="{{equipo.id}}">
+        <div id="container">
+            <div id="datosEquipo">
+                
+                <h2>Datos del Equipo</h2>
+                <span>
+                    <label>Nombre: </label>
+                    <p>{{equipo.nombre}}</p>
+                </span>
+                <span>
+                    <label>Marca: </label>
+                    <p>{{equipo.marca}}</p>
+                </span>
+                <span>
+                    <label>Modelo: </label>
+                    <p>{{equipo.modelo}}</p>
+                </span>
+                <span>
+                    <label>Serie: </label>
+                    <p>{{equipo.serie}}</p>
+                </span>
+            </div>
+            <div id="QR">
+                <img id="imagenQR" alt="Codigo QR">
+                <button class="btn btn-primary" onclick="generarQR('{{equipo.id}}')" type="button">GENERAR QR</button>
+            </div>
+        </div>
+        <div id="historial">
+            <h1>Historial Equipo </h1>
+            <table>
+                <tr id="table-title">
+                    <th>N°</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Horómetro</th>
+                    <th>Tipo</th>
+                    <th>Causa</th>
+                    <th>Nombre Técnico</th>
+                    <th>Recibe Conforme</th>
+                    <th></th>
+                </tr>
+                <tbody>
+                    {% for orden in ordenes %}
+                        <tr class="table-inf">
+                            <td class="inf-nombre">{{ orden.id }}</td>
+                            <td class="inf-fecha">{{ orden.fecha }}</td>
+                            <td class="inf-cliente">{{ equipo.cliente }}</td>
+                            <td class="inf-horometro">{{ orden.horometro }}</td>
+                            <td class="inf-tipo">{{ orden.tipo }}</td>
+                            <td class="inf-causa">{{ orden.causa }}</td>
+                            <td class="inf-tecnico">{{ orden.tecnico }}</td>
+                            <td class="inf-recibe">{{ orden.recibe }}</td>
+                            <td class="botones">
+                                <span>
+                                    <button class="btn btn-primary" type="button"><i class="bi bi-printer-fill white"></i></button>
+                                </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalCategoria" aria-hidden="true" role="dialog">
+    </div>
+{% endblock 'content' %}
+
+{% block script %}
+    <script>
+        let id_qr = $("#id_equipo").val()
+        let $img = document.getElementById('imagenQR')
+        $img.setAttribute("src",`/static/img/qr_${id_qr}.png`) 
+        const csrftoken = getCookie('csrftoken');
+        var $ = jQuery.noConflict();
+        var ruta = window.location.href;
+        function eliminar_equipo(pk){
+            $.ajax({
+                data:{
+                    csrfmiddlewaretoken: $("[name = 'csrfmiddlewaretoken']").val()
+                },
+                url: '../equipos/delete/'+pk,
+                type: 'post',
+            }).done(function(data){
+                cerrar_modal_eliminacion()
+                mensajeSuccess('El servicio ha sido eliminado con exito')
+            }).fail(function(error){
+
+            })
+        }
+        function generarQR(pk){
+            $.ajax({
+                url: ruta,
+                type: 'post',
+                headers: {'X-CSRFToken': csrftoken},
+                data:{
+                    csrfmiddlewaretoken: $("[name = 'csrfmiddlewaretoken']").val(),
+                    action: 'generarQR',
+                    ruta: ruta,
+                    pk: pk
+                },
+                dataType: 'json',
+            }).done(function(data){
+                mensajeSuccess('La orden ha sido aprobada con exito')
+            }).fail(function(error){
+
+            })
+        }
+    </script>    
+{% endblock script %}
+    
